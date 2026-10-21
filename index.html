@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tool Finder & Navigator 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0a0a0c',
+                        cardbg: '#14141f',
+                        bordercol: '#22223b',
+                        accent: '#6366f1',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-darkbg text-gray-100 min-h-screen selection:bg-accent selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-bordercol bg-darkbg/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+                    <i data-lucide="cpu" class="h-6 w-6 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-tight">AI Navigator <span class="text-indigo-400 text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20">2026 Edition</span></h1>
+                    <p class="text-xs text-gray-400">Zero-API Dataset Directory</p>
+                </div>
+            </div>
+            <div class="text-xs text-gray-400 hidden sm:block">
+                Curated Global Intelligence Directory
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Sector Highlights Showcase (Best in Class) -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-sm font-semibold uppercase tracking-wider text-gray-400 flex items-center gap-2">
+                    <i data-lucide="award" class="h-4 w-4 text-amber-400"></i> Sector Champions & Benchmarks
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="highlights-container">
+                <!-- Injected via JavaScript -->
+            </div>
+        </section>
+
+        <div class="border-t border-bordercol my-6"></div>
+
+        <!-- Filter & Search Controls Panel -->
+        <section class="bg-cardbg border border-bordercol rounded-2xl p-6 shadow-xl space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Search Input -->
+                <div class="space-y-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                        <i data-lucide="search" class="h-3.5 w-3.5 text-indigo-400"></i> Search Tool Name
+                    </label>
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="e.g. ChatGPT, Midjourney, Claude..." 
+                            class="w-full bg-darkbg border border-bordercol rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition">
+                    </div>
+                </div>
+
+                <!-- Category Selector -->
+                <div class="space-y-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                        <i data-lucide="grid" class="h-3.5 w-3.5 text-indigo-400"></i> Category
+                    </label>
+                    <select id="categorySelect" class="w-full bg-darkbg border border-bordercol rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition cursor-pointer">
+                        <option value="All">All Categories</option>
+                        <option value="Research">Research & Search</option>
+                        <option value="Writing">Writing & Content</option>
+                        <option value="Image">Image & Art Generation</option>
+                        <option value="Coding">Coding & Development</option>
+                        <option value="Video">Video Production</option>
+                        <option value="Audio">Voice & Audio</option>
+                    </select>
+                </div>
+
+                <!-- Pricing Plan Filter -->
+                <div class="space-y-2">
+                    <label class="text-xs font-semibold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+                        <i data-lucide="tag" class="h-3.5 w-3.5 text-indigo-400"></i> Pricing Plan Model
+                    </label>
+                    <div class="grid grid-cols-3 gap-2 bg-darkbg p-1 border border-bordercol rounded-xl">
+                        <button onclick="setPriceFilter('all')" id="btn-price-all" class="py-2 text-xs font-semibold rounded-lg bg-indigo-600 text-white transition">Both</button>
+                        <button onclick="setPriceFilter('free')" id="btn-price-free" class="py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition">Free Only</button>
+                        <button onclick="setPriceFilter('paid')" id="btn-price-paid" class="py-2 text-xs font-semibold rounded-lg text-gray-400 hover:text-white transition">Paid Only</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Results Counter & Grid -->
+        <section class="space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 id="result-count" class="text-sm font-medium text-gray-400">Showing all AI platforms</h3>
+                <span class="text-xs text-gray-500">Ranked by global performance & reliability</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="tools-grid">
+                <!-- Tools injected dynamically -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-16 bg-cardbg border border-bordercol rounded-2xl space-y-3">
+                <i data-lucide="folder-search" class="h-10 w-10 text-gray-500 mx-auto"></i>
+                <h4 class="font-semibold text-gray-300">No matching AI tools found</h4>
+                <p class="text-xs text-gray-500 max-w-sm mx-auto">Try switching your category filter or choosing 'Both' pricing options to explore more tools.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-bordercol mt-16 py-8 text-center text-xs text-gray-500">
+        <p>AI Tool Directory & Navigator • Built with static dataset for GitHub & Netlify deployment.</p>
+    </footer>
+
+    <!-- Script File Link -->
+    <script src="script.js"></script>
+</body>
+</html>
